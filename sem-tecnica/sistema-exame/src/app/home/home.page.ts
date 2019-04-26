@@ -11,7 +11,11 @@ export class HomePage {
   constructor(public router: Router) {}
 
   teacherUser(){
-    this.router.navigate(['tabs']);
+    this.router.navigate(['login']);
+  }
+
+  studantUser(){
+    
   }
 
 }
