@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { QuestionDataService } from '../services/question-data.service';
 
 @Component({
   selector: 'app-pesquisar-questao',
@@ -7,9 +8,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PesquisarQuestaoPage implements OnInit {
 
-  constructor() { }
+  public searchTerm = '';
+  public questions: any;
+
+  constructor(private qstDataService: QuestionDataService) { }
 
   ngOnInit() {
+    this.setFiltroQst();
+  }
+
+  setFiltroQst() {
+    this.questions = this.qstDataService.filtroItens(this.searchTerm);
   }
 
 }
