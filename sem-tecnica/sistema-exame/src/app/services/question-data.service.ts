@@ -6,6 +6,7 @@ import { QuestaoCustom } from '../questao';
 })
 export class QuestionDataService {
 
+  public data: QuestaoCustom;
   public itens: Array<QuestaoCustom> = [];
 
   constructor() { }

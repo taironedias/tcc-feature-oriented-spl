@@ -12,7 +12,7 @@
   </ion-toolbar>
 
   <ion-list>
-      <ion-item *ngFor="let item of questions">
+      <ion-item *ngFor="let item of questions" (click)="goDetalhes(item)">
         {{ item.textoQst }}
       </ion-item>
     </ion-list>
