@@ -179,7 +179,7 @@ export class CriarQuestaoPage implements OnInit {
 
     const qst3 = new QuestaoCustom();
     qst3.textoQst = 'Qual time foi campeão da Copa do Brasil de 2018?';
-    qst3.categoria = 'História';
+    qst3.categoria = 'Física';
     qst3.alternativas = null;
     qst3.idCorreta = null;
     qst3.textoLivre = 'Cruzeiro';
