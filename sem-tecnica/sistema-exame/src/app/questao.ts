@@ -1,6 +1,7 @@
-export class QuestaoCustomUnica {
+export class QuestaoCustom {
     textoQst: string;
     categoria: string;
-    alternativas: Array<string> = [];
+    alternativas: any;
     idCorreta: number;
+    textoLivre: string;
 }

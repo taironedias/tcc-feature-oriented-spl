@@ -6,10 +6,9 @@
 </ion-header>
 
 <ion-content padding>
-
   <ion-item>
-    <ion-label position="floating">Escreva o texto da questão:</ion-label>
-    <ion-textarea [(ngModel)]="textoQuestao"></ion-textarea>
+      <ion-label position="floating">Escreva o texto da questão:</ion-label>
+      <ion-textarea [(ngModel)]="textoQuestao"></ion-textarea>
   </ion-item>
 
   <ion-item>
@@ -24,27 +23,29 @@
     </ion-select> -->
   </ion-item>
 
-  <ion-segment (ionChange)="setOpcResposta(opcResposta.value)" #opcResposta>
-    <ion-grid>
+  <ion-item>
+    <ion-segment (ionChange)="setOpcResposta(opcResposta.value)" #opcResposta>
+      <ion-grid>
+        
+        <ion-row>
+          <ion-label> Escolha a opção de resposta: </ion-label>
+        </ion-row>
 
-      <ion-row>
-        <ion-label> Escolha a opção de resposta: </ion-label>
-      </ion-row>
+        <ion-row>
+          <ion-segment-button value="unica">
+            <ion-label>Escolha Única</ion-label>
+          </ion-segment-button>
+          <ion-segment-button value="multipla">
+            <ion-label>Escolha Múltipla</ion-label>
+          </ion-segment-button>
+          <ion-segment-button value="texto">
+            <ion-label>Texto livre</ion-label>
+          </ion-segment-button>
+        </ion-row>
 
-      <ion-row>
-        <ion-segment-button value="unica">
-          <ion-label>Escolha Única</ion-label>
-        </ion-segment-button>
-        <ion-segment-button value="multipla">
-          <ion-label>Escolha Múltipla</ion-label>
-        </ion-segment-button>
-        <ion-segment-button value="texto">
-          <ion-label>Texto livre</ion-label>
-        </ion-segment-button>
-      </ion-row>
-
-    </ion-grid>
-  </ion-segment>
+      </ion-grid>
+    </ion-segment>
+  </ion-item>
 
   <div *ngIf="opcRespostaEscolhida == 'unica'">
     <ion-list>
@@ -136,7 +137,7 @@
 
 
 
-  <ion-button color="primary" (click)="createQuestion()"> Enviar questão </ion-button>
+  <ion-button color="primary" (click)="createQuestion()" fill="solid" expand="block"> Enviar questão </ion-button>
 
 
 
