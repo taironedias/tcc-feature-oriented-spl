@@ -27,16 +27,16 @@
       <ion-radio-group (ionChange)="setRespAlternativa(respAlt.value)" #respAlt>
 
         <ion-item>
-          <ion-label>{{alternativasResp[0]}}</ion-label>
-          <ion-radio slot="end" value="0" [checked]="rAlt0"></ion-radio>
+          <ion-label>{{ formRadio[0].val }}</ion-label>
+          <ion-radio value="0" [checked]="formRadio[0].isChecked"></ion-radio>
         </ion-item>
         <ion-item>
-          <ion-label>{{alternativasResp[1]}}</ion-label>
-          <ion-radio slot="end" value="1" [checked]="rAlt1"></ion-radio>
+          <ion-label>{{ formRadio[1].val }}</ion-label>
+          <ion-radio value="1" [checked]="formRadio[1].isChecked"></ion-radio>
         </ion-item>
         <ion-item>
-          <ion-label>{{alternativasResp[2]}}</ion-label>
-          <ion-radio slot="end" value="2" [checked]="rAlt2"></ion-radio>
+          <ion-label>{{ formRadio[2].val }}</ion-label>
+          <ion-radio value="2" [checked]="formRadio[2].isChecked"></ion-radio>
         </ion-item>
 
       </ion-radio-group>
@@ -63,7 +63,7 @@
 
 
 
-  <ion-button color="primary" (click)="createQuestion()" fill="solid" expand="block"> Atualizar questão </ion-button>
+  <ion-button color="primary" (click)="updateQuestion()" fill="solid" expand="block"> Atualizar questão </ion-button>
 
 
 
