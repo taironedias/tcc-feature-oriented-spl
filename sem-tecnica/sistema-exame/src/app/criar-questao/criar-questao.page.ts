@@ -63,8 +63,7 @@ export class CriarQuestaoPage implements OnInit {
     private alertCtrl: AlertController) { }
 
   ngOnInit() {
-    // this.resetCampos();
-    // this.valuesDefault();
+    this.valuesDefault();
   }
 
   createQuestion() {
