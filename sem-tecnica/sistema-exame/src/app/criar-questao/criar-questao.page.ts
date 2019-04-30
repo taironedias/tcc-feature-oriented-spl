@@ -64,7 +64,7 @@ export class CriarQuestaoPage implements OnInit {
 
   ngOnInit() {
     // this.resetCampos();
-    this.valuesDefault();
+    // this.valuesDefault();
   }
 
   createQuestion() {
@@ -100,7 +100,7 @@ export class CriarQuestaoPage implements OnInit {
       console.log(qst);
       qst.id = this.gerarID();
       this.qstDataService.itens.push(qst);
-      this.showAlert('Questão', 'Questão enviada com sucesso!');
+      this.showAlert('Questão', 'Questão adicionada com sucesso!');
       this.resetCampos();
     }
   }

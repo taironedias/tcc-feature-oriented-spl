@@ -110,15 +110,15 @@ export class AtualizarQuestaoPage implements OnInit {
         this.qst.textoLivre = null;
       }
 
-    }
-    for (let k in this.qstDataService.itens) {
-      if (this.qstDataService.itens[k].id === this.qst.id) {
-        this.qstDataService.itens[k] = this.qst;
+      for (let k in this.qstDataService.itens) {
+        if (this.qstDataService.itens[k].id === this.qst.id) {
+          this.qstDataService.itens[k] = this.qst;
+        }
       }
+  
+      console.log(this.qstDataService.itens);
+      this.showAlert('Update', 'Questão atualizada com sucesso!');
+      this.router.navigate(['tabs/pesquisar-questao']);
     }
-
-    console.log(this.qstDataService.itens);
-    this.showAlert('Update', 'Questão atualizada com sucesso!');
-    this.router.navigate(['tabs/pesquisar-questao']);
   }
 }
