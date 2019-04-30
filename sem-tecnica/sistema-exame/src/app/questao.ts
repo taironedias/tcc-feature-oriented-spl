@@ -2,6 +2,7 @@ export class QuestaoCustom {
     textoQst: string;
     categoria: string;
     alternativas: any;
-    idCorreta: number;
+    opcEscolha: string;
     textoLivre: string;
+    id: string;
 }
