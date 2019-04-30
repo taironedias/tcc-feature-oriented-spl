@@ -16,7 +16,7 @@ export class CriarQuestaoPage implements OnInit {
 
   disciplinas = ['Matemática', 'Biologia', 'Física',
     'Química', 'Literatura', 'Inglês',
-    'História', 'Geografia', 'Artes'];
+    'História', 'Geografia', 'Artes'].sort();
   textoQuestao = '';
   discpEscolhida: string;
   opcRespostaEscolhida = '';
@@ -160,8 +160,8 @@ export class CriarQuestaoPage implements OnInit {
     const qst = new QuestaoCustom();
     qst.textoQst = 'Qual o time que mais vezes foi campeão brasileiro?';
     qst.categoria = 'História';
-    qst.alternativas = ['Palmeiras', 'Bahia', 'Grêmio'];
-    qst.idCorreta = 0;
+    qst.alternativas = ['Bahia', 'Palmeiras', 'Grêmio'];
+    qst.idCorreta = 1;
     qst.textoLivre = null;
     this.qstDataService.itens.push(qst);
 
