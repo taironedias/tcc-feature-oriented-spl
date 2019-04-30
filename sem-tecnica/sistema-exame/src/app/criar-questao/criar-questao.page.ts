@@ -22,6 +22,11 @@ export class CriarQuestaoPage implements OnInit {
   opcRespostaEscolhida = '';
   idCorretaEscolhida: number;
   alternativa = '';
+  formRadio = [
+    { val: 'Alternativa 1', isChecked: false },
+    { val: 'Alternativa 2', isChecked: false },
+    { val: 'Alternativa 3', isChecked: false }
+  ];
   alternativasResp: Array<string> = [];
   cont = 0;
   disabledButton = false;
@@ -79,27 +84,27 @@ export class CriarQuestaoPage implements OnInit {
       qst.textoQst = this.textoQuestao;
       qst.categoria = this.discpEscolhida;
       if (this.opcRespostaEscolhida === 'unica') {
-        qst.alternativas = this.alternativasResp;
-        qst.idCorreta = this.idCorretaEscolhida;
+        qst.alternativas = this.formRadio;
+        qst.opcEscolha = this.opcRespostaEscolhida;
         qst.textoLivre = null;
       } else if (this.opcRespostaEscolhida === 'texto') {
         if (this.textoLivre === null || this.textoLivre === '') {
           this.showAlert('Aviso!', 'Por favor, forneça um texto de resposta válida.');
         }
         qst.alternativas = null;
-        qst.idCorreta = null;
+        qst.opcEscolha = this.opcRespostaEscolhida;
         qst.textoLivre = this.textoLivre;
       } else if (this.opcRespostaEscolhida === 'multipla') {
-        qst.alternativas = this.alternativasResp;
-        qst.idCorreta = null;
+        qst.alternativas = this.form;
+        qst.opcEscolha = this.opcRespostaEscolhida;
         qst.textoLivre = null;
       }
 
+      console.log(qst);
+      qst.id = this.gerarID();
+      this.qstDataService.itens.push(qst);
       this.showAlert('Questão', 'Questão enviada com sucesso!');
       this.resetCampos();
-      console.log(qst);
-      // this.listQuestions.push(qst);
-      this.qstDataService.itens.push(qst);
     }
   }
 
@@ -112,7 +117,7 @@ export class CriarQuestaoPage implements OnInit {
   }
 
   addAlternativa() {
-    this.alternativasResp[this.cont] = this.alternativa;
+    this.formRadio[this.cont].val = this.alternativa;
     this.cont += 1;
     this.alternativa = '';
     if (this.cont === 3) {
@@ -121,7 +126,8 @@ export class CriarQuestaoPage implements OnInit {
   }
 
   setRespAlternativa(value) {
-    this.idCorretaEscolhida = parseInt(value);
+    this.formRadio[value].isChecked = true;
+    // this.idCorretaEscolhida = parseInt(value);
   }
 
 
@@ -145,11 +151,11 @@ export class CriarQuestaoPage implements OnInit {
     await alerta.present();
   }
 
-  gerarKeyExame(): string {
+  gerarID(): string {
     let outString = '';
     const inOptions = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
 
-    for (let i = 0; i < 32; i++) {
+    for (let i = 0; i < 20; i++) {
       outString += inOptions.charAt(Math.floor(Math.random() * inOptions.length));
     }
 
@@ -160,9 +166,14 @@ export class CriarQuestaoPage implements OnInit {
     const qst = new QuestaoCustom();
     qst.textoQst = 'Qual o time que mais vezes foi campeão brasileiro?';
     qst.categoria = 'História';
-    qst.alternativas = ['Palmeiras', 'Bahia', 'Grêmio'];
-    qst.idCorreta = 0;
+    qst.alternativas = [
+      { val: 'Bahia', isChecked: false },
+      { val: 'Palmeiras', isChecked: true },
+      { val: 'Grêmio', isChecked: false }
+    ];
+    qst.opcEscolha = 'unica';
     qst.textoLivre = null;
+    qst.id = this.gerarID();
     this.qstDataService.itens.push(qst);
 
     const qst2 = new QuestaoCustom();
@@ -173,16 +184,18 @@ export class CriarQuestaoPage implements OnInit {
       { val: 'São Paulo', isChecked: true },
       { val: 'Vitória', isChecked: false }
     ];
-    qst2.idCorreta = null;
+    qst2.opcEscolha = 'multipla';
     qst2.textoLivre = null;
+    qst2.id = this.gerarID();
     this.qstDataService.itens.push(qst2);
 
     const qst3 = new QuestaoCustom();
     qst3.textoQst = 'Qual time foi campeão da Copa do Brasil de 2018?';
     qst3.categoria = 'Física';
     qst3.alternativas = null;
-    qst3.idCorreta = null;
+    qst3.opcEscolha = 'texto';
     qst3.textoLivre = 'Cruzeiro';
+    qst3.id = this.gerarID();
     this.qstDataService.itens.push(qst3);
   }
 
