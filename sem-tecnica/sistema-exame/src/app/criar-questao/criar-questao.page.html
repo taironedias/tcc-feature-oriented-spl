@@ -80,15 +80,6 @@
           <ion-radio value="2" checked></ion-radio>
         </ion-item>
 
-        <!-- <ion-item *ngFor="let item of alternativasResp">
-          <ion-label>{{item}}</ion-label>
-          <ion-radio slot="start" value="item"></ion-radio>
-        </ion-item> -->
-
-        <!-- <ion-item>
-          <ion-label>Buford</ion-label>
-          <ion-radio slot="start" value="buford"></ion-radio>
-        </ion-item> -->
       </ion-radio-group>
     </ion-list>
   </div>
@@ -110,7 +101,7 @@
 
     <ion-list>
       <ion-item *ngFor="let item of form">
-        <ion-label>{{item.val}}</ion-label>
+        <ion-label>{{ item.val }}</ion-label>
         <ion-checkbox slot="end" [(ngModel)]="item.isChecked"></ion-checkbox>
       </ion-item>
     </ion-list>

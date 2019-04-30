@@ -16,18 +16,16 @@ export class CriarQuestaoPage implements OnInit {
 
   disciplinas = ['Matemática', 'Biologia', 'Física',
     'Química', 'Literatura', 'Inglês',
-    'História', 'Geografia', 'Artes'];
+    'História', 'Geografia', 'Artes'].sort();
   textoQuestao = '';
   discpEscolhida: string;
   opcRespostaEscolhida = '';
-  idCorretaEscolhida: number;
   alternativa = '';
   formRadio = [
     { val: 'Alternativa 1', isChecked: false },
     { val: 'Alternativa 2', isChecked: false },
     { val: 'Alternativa 3', isChecked: false }
   ];
-  alternativasResp: Array<string> = [];
   cont = 0;
   disabledButton = false;
 
@@ -41,15 +39,14 @@ export class CriarQuestaoPage implements OnInit {
   textoLivre: string;
 
   resetCampos() {
-    this.disciplinas.sort();
     this.textoQuestao = null;
     this.opcRespostaEscolhida = null;
-    this.idCorretaEscolhida = null;
     this.alternativa = null;
-    this.alternativasResp = [];
-    this.alternativasResp.push('Alternativa 1');
-    this.alternativasResp.push('Alternativa 2');
-    this.alternativasResp.push('Alternativa 3');
+    this.formRadio = [
+      { val: 'Alternativa 1', isChecked: false },
+      { val: 'Alternativa 2', isChecked: false },
+      { val: 'Alternativa 3', isChecked: false }
+    ];
     this.cont = 0;
     this.disabledButton = false;
     this.form = [
@@ -62,8 +59,8 @@ export class CriarQuestaoPage implements OnInit {
   }
 
   constructor(private qstDataService: QuestionDataService,
-              private router: Router,
-              private alertCtrl: AlertController) { }
+    private router: Router,
+    private alertCtrl: AlertController) { }
 
   ngOnInit() {
     // this.resetCampos();
@@ -127,7 +124,6 @@ export class CriarQuestaoPage implements OnInit {
 
   setRespAlternativa(value) {
     this.formRadio[value].isChecked = true;
-    // this.idCorretaEscolhida = parseInt(value);
   }
 
 

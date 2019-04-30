@@ -8,7 +8,8 @@ const routes: Routes = [
         component: TabsPage,
         children: [
             { path: 'criar-questao', loadChildren: '../criar-questao/criar-questao.module#CriarQuestaoPageModule' },
-            { path: 'pesquisar-questao', loadChildren: '../pesquisar-questao/pesquisar-questao.module#PesquisarQuestaoPageModule' }
+            { path: 'pesquisar-questao', loadChildren: '../pesquisar-questao/pesquisar-questao.module#PesquisarQuestaoPageModule' },
+            { path: 'criar-exame', loadChildren: './criar-exame/criar-exame.module#CriarExamePageModule' }
         ]
     }
 ];
