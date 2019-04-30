@@ -1,0 +1,88 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Atualizar Questão</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-item>
+    <ion-label position="floating">Texto da questão:</ion-label>
+    <ion-textarea [(ngModel)]="textoQuestao" value="textoQuestao"></ion-textarea>
+  </ion-item>
+
+  <ion-item>
+    <ion-label>Categoria:</ion-label>
+    <ion-select [(ngModel)]="categoria" (ionChange)="categoriaEscolhida()" [interfaceOptions]="customPopoverOptions"
+      interface="popover">
+      <ion-select-option *ngFor="let categoria of categorias">{{categoria}}</ion-select-option>
+    </ion-select>
+  </ion-item>
+
+  <div *ngIf="opcResp == 'unica'">
+    <ion-item>
+      <ion-label> Alternativas: </ion-label>
+    </ion-item>
+
+    <ion-list>
+      <ion-radio-group (ionChange)="setRespAlternativa(respAlt.value)" #respAlt>
+
+        <ion-item>
+          <ion-label>{{alternativasResp[0]}}</ion-label>
+          <ion-radio slot="end" value="0" [checked]="rAlt0"></ion-radio>
+        </ion-item>
+        <ion-item>
+          <ion-label>{{alternativasResp[1]}}</ion-label>
+          <ion-radio slot="end" value="1" [checked]="rAlt1"></ion-radio>
+        </ion-item>
+        <ion-item>
+          <ion-label>{{alternativasResp[2]}}</ion-label>
+          <ion-radio slot="end" value="2" [checked]="rAlt2"></ion-radio>
+        </ion-item>
+
+      </ion-radio-group>
+    </ion-list>
+  </div>
+
+  <div *ngIf="opcResp == 'texto'">
+    <ion-item>
+      <ion-label position="floating">Resposta:</ion-label>
+      <ion-textarea [(ngModel)]="textoLivre" value="textoLivre"></ion-textarea>
+    </ion-item>
+  </div>
+
+  <div *ngIf="opcResp == 'multipla'">
+
+    <ion-list>
+      <ion-item *ngFor="let item of form">
+        <ion-label>{{item.val}}</ion-label>
+        <ion-checkbox slot="end" [(ngModel)]="item.isChecked"></ion-checkbox>
+      </ion-item>
+    </ion-list>
+
+  </div>
+
+
+
+  <ion-button color="primary" (click)="createQuestion()" fill="solid" expand="block"> Atualizar questão </ion-button>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</ion-content>
