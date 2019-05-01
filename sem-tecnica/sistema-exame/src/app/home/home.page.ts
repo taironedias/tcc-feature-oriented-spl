@@ -10,12 +10,12 @@ export class HomePage {
 
   constructor(public router: Router) {}
 
-  teacherUser(){
+  teacherUser() {
     this.router.navigate(['login']);
   }
 
-  studantUser(){
-    
+  studantUser() {
+    this.router.navigate(['aluno']);
   }
 
 }
