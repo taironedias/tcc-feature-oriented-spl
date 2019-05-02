@@ -9,7 +9,7 @@ const routes: Routes = [
         children: [
             { path: 'criar-questao', loadChildren: '../criar-questao/criar-questao.module#CriarQuestaoPageModule' },
             { path: 'pesquisar-questao', loadChildren: '../pesquisar-questao/pesquisar-questao.module#PesquisarQuestaoPageModule' },
-            { path: 'criar-exame', loadChildren: './criar-exame/criar-exame.module#CriarExamePageModule' }
+            { path: 'criar-exame', loadChildren: '../criar-exame/criar-exame.module#CriarExamePageModule' }
         ]
     }
 ];
