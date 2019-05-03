@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { QuestionDataService } from '../services/question-data.service';
 import { ExameCustom } from '../exame';
 import { QuestaoCustom } from '../questao';
-import { timingSafeEqual } from 'crypto';
 import { AlertController } from '@ionic/angular';
 import { Router, ActivatedRoute } from '@angular/router';
 

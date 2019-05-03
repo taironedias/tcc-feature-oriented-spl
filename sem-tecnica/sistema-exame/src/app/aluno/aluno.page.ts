@@ -12,38 +12,79 @@ import { AlertController } from '@ionic/angular';
 })
 export class AlunoPage implements OnInit {
 
+  opcaoAcesso = 'any';
   nameStudant = '';
   keyAcesso = '';
   ID = 0;
   flag = false;
+  username = '';
+  password = '';
+  nameButton = '';
+
+  resetValues() {
+    this.opcaoAcesso = 'any';
+    this.nameStudant = '';
+    this.keyAcesso = '';
+    this.ID = 0;
+    this.flag = false;
+    this.username = '';
+    this.password = '';
+    this.nameButton = '';
+  }
 
   constructor(private qstData: QuestionDataService,
     private router: Router,
     private alertCtrl: AlertController) { }
 
   ngOnInit() {
+    this.resetValues();
     this.valuesDefault();
   }
 
+  setOpcaoAcesso() {
+    if (this.opcaoAcesso === 'keyexame') {
+      this.nameButton = 'FAZER EXAME';
+    } else if (this.opcaoAcesso === 'login') {
+      this.nameButton = 'LOGIN';
+    }
+  }
+
   makeExame() {
-    if (this.nameStudant === '' || this.nameStudant === null) {
-      this.showAlert('Aviso', 'O campo nome do aluno deve ser preenchido!');
-    } else if (this.keyAcesso === '' || this.keyAcesso === null) {
-      this.showAlert('Aviso', 'O campo chave do exame deve ser preenchido!');
-    } else {
-      for (const exame of this.qstData.examesArray) {
-        console.log(exame.key);
-        if (this.keyAcesso === exame.key) {
-          this.flag = true;
-          break;
-        }
-        this.ID++;
-      }
-      if (this.flag) {
-        this.router.navigate(['fazer-exame', this.ID]);
+    if (this.opcaoAcesso === 'keyexame') {
+      if (this.nameStudant === '' || this.nameStudant === null) {
+        this.showAlert('Aviso', 'O campo nome do aluno deve ser preenchido!');
+      } else if (this.keyAcesso === '' || this.keyAcesso === null) {
+        this.showAlert('Aviso', 'O campo chave do exame deve ser preenchido!');
       } else {
-        this.keyAcesso = '';
-        this.showAlert('Aviso', 'A chave está incorreta. Tente novamente!');
+        for (const exame of this.qstData.examesArray) {
+          console.log(exame.key);
+          if (this.keyAcesso === exame.key) {
+            this.flag = true;
+            break;
+          }
+          this.ID++;
+        }
+
+        if (this.flag) {
+          this.router.navigate(['fazer-exame', this.ID]);
+        } else {
+          this.keyAcesso = '';
+          this.showAlert('Aviso', 'A chave está incorreta. Tente novamente!');
+        }
+      }
+    } else if (this.opcaoAcesso === 'login') {
+      if (this.username === '') {
+        this.showAlert('Aviso', 'Por favor, informe o seu username!');
+      } else if (this.password === '') {
+        this.showAlert('Aviso', 'Por favor, informe o sua senha!');
+      } else {
+        if (this.username === 'aluno' && this.password === '1234') {
+          this.router.navigate(['fazer-exame', this.ID]);
+        } else {
+          this.username = '';
+          this.password = '';
+          this.showAlert('Aviso', 'Usuário incorreto, tente novamente!');
+        }
       }
     }
   }
@@ -99,7 +140,7 @@ export class AlunoPage implements OnInit {
     exame.questoes.push(qst);
     exame.questoes.push(qst2);
     exame.questoes.push(qst3);
-    exame.key = 'keyexame';
+    exame.key = 'mendouce';
 
     this.qstData.examesArray.push(exame);
     console.log(this.qstData.examesArray);

@@ -6,11 +6,13 @@
 </ion-header>
 
 <ion-content padding>
+  <!-- TEXTO DA QUESTÃO -->
   <ion-item>
-      <ion-label position="floating">Escreva o texto da questão:</ion-label>
-      <ion-textarea [(ngModel)]="textoQuestao"></ion-textarea>
+    <ion-label position="floating">Escreva o texto da questão:</ion-label>
+    <ion-textarea [(ngModel)]="textoQuestao"></ion-textarea>
   </ion-item>
 
+  <!-- CATEGORIA DA QUESTÃO -->
   <ion-item>
     <ion-label>Escolha a categoria:</ion-label>
     <ion-select [interfaceOptions]="customPopoverOptions" interface="popover" placeholder="---"
@@ -23,15 +25,16 @@
     </ion-select> -->
   </ion-item>
 
+  <!-- ESCOLHA DA RESPOSTA -->
   <ion-item>
-    <ion-segment (ionChange)="setOpcResposta(opcResposta.value)" #opcResposta>
-      <ion-grid>
-        
-        <ion-row>
-          <ion-label> Escolha a opção de resposta: </ion-label>
-        </ion-row>
+    <ion-grid>
 
-        <ion-row>
+      <ion-row>
+        <ion-label> Escolha a opção de resposta: </ion-label>
+      </ion-row>
+
+      <ion-row>
+        <ion-segment (ionChange)="setOpcResposta(opcResposta.value)" #opcResposta>
           <ion-segment-button value="unica">
             <ion-label>Escolha Única</ion-label>
           </ion-segment-button>
@@ -41,12 +44,13 @@
           <ion-segment-button value="texto">
             <ion-label>Texto livre</ion-label>
           </ion-segment-button>
-        </ion-row>
+        </ion-segment>
+      </ion-row>
 
-      </ion-grid>
-    </ion-segment>
+    </ion-grid>
   </ion-item>
 
+  <!-- TIPOS DA RESPOSTA -->
   <div *ngIf="opcRespostaEscolhida == 'unica'">
     <ion-list>
       <ion-radio-group (ionChange)="setRespAlternativa(respAlt.value)" #respAlt>
@@ -114,20 +118,16 @@
     </ion-item>
   </div>
 
-  <!--   
-  <ion-grid>
-    <ion-row>
-      <ion-col>
-        ion-col
-      </ion-col>
-      <ion-col size="3">
-        ion-col 3
-      </ion-col>
-    </ion-row>
-  </ion-grid> -->
+  <!-- NIVEL DE DIFICULDADE -->
+  <ion-item>
+    <ion-label>Nível de dificuldade:</ion-label>
+    <ion-select [interfaceOptions]="customPopoverOptions" interface="popover" placeholder="---"
+      (ionChange)="setNivel(nivel.value)" #nivel>
+      <ion-select-option *ngFor="let item of niveis">{{ item }}</ion-select-option>
+    </ion-select>
+  </ion-item>
 
-
-
+  <!-- ENVIAR QUESTÃO -->
   <ion-button color="primary" (click)="createQuestion()" fill="solid" expand="block"> Enviar questão </ion-button>
 
 

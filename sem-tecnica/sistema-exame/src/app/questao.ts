@@ -5,4 +5,5 @@ export class QuestaoCustom {
     opcEscolha: string;
     textoLivre: string;
     id: string;
+    nivelDificuldade: string;
 }
