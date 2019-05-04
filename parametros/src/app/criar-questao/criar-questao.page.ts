@@ -14,6 +14,8 @@ export class CriarQuestaoPage implements OnInit {
 
   public listQuestions: Array<QuestaoCustom> = [];
 
+  niveis = ['1', '2', '3'];
+  nivel = '1';
   disciplinas = ['Matemática', 'Biologia', 'Física',
     'Química', 'Literatura', 'Inglês',
     'História', 'Geografia', 'Artes'].sort();
@@ -79,6 +81,7 @@ export class CriarQuestaoPage implements OnInit {
       const qst = new QuestaoCustom();
       qst.textoQst = this.textoQuestao;
       qst.categoria = this.discpEscolhida;
+      qst.nivelDificuldade = this.nivel;
       if (this.opcRespostaEscolhida === 'unica') {
         qst.alternativas = this.formRadio;
         qst.opcEscolha = this.opcRespostaEscolhida;
@@ -127,7 +130,6 @@ export class CriarQuestaoPage implements OnInit {
 
 
   /* MULTIPLA ESCOLHA */
-
   addCheckbox() {
     this.form[this.cont].val = this.altCheckbox;
     this.cont += 1;
@@ -135,6 +137,10 @@ export class CriarQuestaoPage implements OnInit {
     if (this.cont === 3) {
       this.disabledButton = true;
     }
+  }
+
+  setNivel(value) {
+    this.nivel = value;
   }
 
   async showAlert(title: string, msg: string) {
@@ -161,6 +167,7 @@ export class CriarQuestaoPage implements OnInit {
     const qst = new QuestaoCustom();
     qst.textoQst = 'Qual o time que mais vezes foi campeão brasileiro?';
     qst.categoria = 'História';
+    qst.nivelDificuldade = '1';
     qst.alternativas = [
       { val: 'Bahia', isChecked: false },
       { val: 'Palmeiras', isChecked: true },
@@ -174,6 +181,7 @@ export class CriarQuestaoPage implements OnInit {
     const qst2 = new QuestaoCustom();
     qst2.textoQst = 'Quais times vencedores da Libertadores?';
     qst2.categoria = 'História';
+    qst2.nivelDificuldade = '2';
     qst2.alternativas = [
       { val: 'Santos', isChecked: true },
       { val: 'São Paulo', isChecked: true },
@@ -187,6 +195,7 @@ export class CriarQuestaoPage implements OnInit {
     const qst3 = new QuestaoCustom();
     qst3.textoQst = 'Qual time foi campeão da Copa do Brasil de 2018?';
     qst3.categoria = 'Física';
+    qst3.nivelDificuldade = '3';
     qst3.alternativas = null;
     qst3.opcEscolha = 'texto';
     qst3.textoLivre = 'Cruzeiro';

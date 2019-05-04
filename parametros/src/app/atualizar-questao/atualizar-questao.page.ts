@@ -14,10 +14,12 @@ export class AtualizarQuestaoPage implements OnInit {
   qst: QuestaoCustom;
   textoQuestao: string;
 
+  niveis = ['1', '2', '3'];
   categorias = ['Matemática', 'Biologia', 'Física',
     'Química', 'Literatura', 'Inglês',
     'História', 'Geografia', 'Artes'].sort();
   categoria = '';
+  nivel = '1';
 
   opcResp = '';
   formRadio = [
@@ -47,6 +49,7 @@ export class AtualizarQuestaoPage implements OnInit {
     this.qst = this.qstDataService.data;
     this.textoQuestao = this.qst.textoQst;
     this.categoria = this.qst.categoria;
+    this.nivel = this.qst.nivelDificuldade;
 
     if (this.qst.opcEscolha === 'unica') {
       this.opcResp = this.qst.opcEscolha;
@@ -96,6 +99,7 @@ export class AtualizarQuestaoPage implements OnInit {
 
       this.qst.textoQst = this.textoQuestao;
       this.qst.categoria = this.categoria;
+      this.qst.nivelDificuldade = this.nivel;
       if (this.opcResp === 'unica') {
         this.qst.alternativas = this.formRadio;
         this.qst.textoLivre = null;
