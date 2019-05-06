@@ -1,0 +1,25 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Criar Exame</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+  
+  <ion-item>
+    <ion-label position="floating"> Digite o nome do exame: </ion-label>
+    <ion-input [(ngModel)]="nameExame"></ion-input>
+  </ion-item>
+
+  <ion-list>
+    <ion-item *ngFor="let item of qstItens">
+      <ion-label class="ion-text-wrap">
+        {{ item.value }}
+      </ion-label>
+      <ion-toggle slot="end" [(ngModel)]="item.isChecked"></ion-toggle>
+    </ion-item>
+  </ion-list>
+
+  <ion-button color="primary" (click)="addQuestions()" fill="solid" expand="block"> Adicionar Questões </ion-button>
+
+</ion-content>
