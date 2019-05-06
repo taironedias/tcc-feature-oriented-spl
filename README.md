@@ -16,11 +16,11 @@ Este repositório apresenta a primeira técnica de implementação de variabilid
 
 
 #### design-patterns:
-Ainda em desenvolvimento!
+Ainda em desenvolvimento...
 
 
 #### frameworks white-box e black-box:
-Não sei se chego a esse nível!
+Não sei se chego a esse nível...
 
 
 #### componentes-servicos:
