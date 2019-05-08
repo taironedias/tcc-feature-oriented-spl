@@ -13,8 +13,6 @@ import { ConfigService, ACCESS_BASE, LEVEL_BASE } from '../services/config';
 })
 export class AlunoPage implements OnInit {
 
-  accessKey: boolean;
-
   nameStudant = '';
   keyAcesso = '';
   ID = 0;
@@ -23,18 +21,7 @@ export class AlunoPage implements OnInit {
   password = '';
   nameButton = '';
 
-  resetValues() {
-    if (this.accessKey) {
-      this.nameStudant = '';
-      this.keyAcesso = '';
-      this.ID = 0;
-      this.flag = false;
-    } else {
-      this.username = '';
-      this.password = '';
-    }
-    this.nameButton = '';
-  }
+  accessKey: boolean;
 
   constructor(private qstData: QuestionDataService,
               private router: Router,
@@ -53,6 +40,19 @@ export class AlunoPage implements OnInit {
     } else {
       this.nameButton = 'LOGIN';
     }
+  }
+
+  resetValues() {
+    if (this.accessKey) {
+      this.nameStudant = '';
+      this.keyAcesso = '';
+      this.ID = 0;
+      this.flag = false;
+    } else {
+      this.username = '';
+      this.password = '';
+    }
+    this.nameButton = '';
   }
 
   makeExame() {

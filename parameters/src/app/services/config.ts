@@ -4,7 +4,8 @@ import { Http } from '@angular/http';
 export const ACCESS_BASE = new InjectionToken<string>('ACCESS_BASE');
 export const LEVEL_BASE = new InjectionToken<string>('LEVEL_BASE');
 
-export function ConfigFactory(configService: ConfigService, file: string, property: string) {
+export function ConfigFactory(configService: ConfigService, file: string,
+                              property: string) {
     return configService.loadJSON(file)[property];
 }
 
@@ -35,3 +36,5 @@ export class ConfigService {
         }
     }
 }
+
+
