@@ -15,14 +15,9 @@
   <!-- CATEGORIA DA QUESTÃO -->
   <ion-item>
     <ion-label>Escolha a categoria:</ion-label>
-    <ion-select [interfaceOptions]="customPopoverOptions" interface="popover" placeholder="---"
-      (ionChange)="setDisciplina(disciplina.value)" #disciplina>
+    <ion-select interface="popover" placeholder="---" [(ngModel)]="disciplina">
       <ion-select-option *ngFor="let item of disciplinas">{{ item }}</ion-select-option>
     </ion-select>
-    <!-- <ion-select [interfaceOptions]="customPopoverOptions" interface="popover" placeholder="---"
-      (blur)="validandoTecnologia(tecnologia.value)" (change)="validandoTecnologia(tecnologia.value)" #tecnologia>
-      <ion-select-option *ngFor="let item of disciplinas">{{ item }}</ion-select-option>
-    </ion-select> -->
   </ion-item>
 
   <!-- ESCOLHA DA RESPOSTA -->
@@ -34,7 +29,7 @@
       </ion-row>
 
       <ion-row>
-        <ion-segment (ionChange)="setOpcResposta(opcResposta.value)" #opcResposta>
+        <ion-segment [(ngModel)]="opcResposta">
           <ion-segment-button value="unica">
             <ion-label>Escolha Única</ion-label>
           </ion-segment-button>
@@ -51,7 +46,7 @@
   </ion-item>
 
   <!-- TIPOS DA RESPOSTA -->
-  <div *ngIf="opcRespostaEscolhida == 'unica'">
+  <div *ngIf="opcResposta == 'unica'">
     <ion-list>
       <ion-radio-group (ionChange)="setRespAlternativa(respAlt.value)" #respAlt>
         <ion-list-header>
@@ -88,7 +83,7 @@
     </ion-list>
   </div>
 
-  <div *ngIf="opcRespostaEscolhida == 'multipla'">
+  <div *ngIf="opcResposta == 'multipla'">
 
     <ion-grid>
       <ion-row>
@@ -111,7 +106,7 @@
     </ion-list>
   </div>
 
-  <div *ngIf="opcRespostaEscolhida == 'texto'">
+  <div *ngIf="opcResposta == 'texto'">
     <ion-item>
       <ion-label position="floating">Escreva o que seria uma resposta adequada:</ion-label>
       <ion-textarea [(ngModel)]="textoLivre"></ion-textarea>
@@ -121,8 +116,7 @@
   <!-- NIVEL DE DIFICULDADE -->
   <ion-item>
     <ion-label>Nível de dificuldade:</ion-label>
-    <ion-select [interfaceOptions]="customPopoverOptions" interface="popover" placeholder="---"
-      (ionChange)="setNivel(nivel.value)" #nivel>
+    <ion-select interface="popover" placeholder="---" [(ngModel)]="nivel">
       <ion-select-option *ngFor="let item of niveis">{{ item }}</ion-select-option>
     </ion-select>
   </ion-item>

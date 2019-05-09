@@ -14,8 +14,7 @@
   <!-- CATEGORIA DA QUESTÃO -->
   <ion-item>
     <ion-label>Categoria:</ion-label>
-    <ion-select [(ngModel)]="categoria" (ionChange)="categoriaEscolhida()" [interfaceOptions]="customPopoverOptions"
-      interface="popover">
+    <ion-select [(ngModel)]="categoria" interface="popover">
       <ion-select-option *ngFor="let categoria of categorias">{{ categoria }}</ion-select-option>
     </ion-select>
   </ion-item>
@@ -67,7 +66,7 @@
   <!-- NIVEL DE DIFICULDADE -->
   <ion-item>
     <ion-label>Nível de dificuldade:</ion-label>
-    <ion-select [(ngModel)]="nivel" [interfaceOptions]="customPopoverOptions" interface="popover">
+    <ion-select [(ngModel)]="nivel" interface="popover">
       <ion-select-option *ngFor="let item of niveis">{{ item }}</ion-select-option>
     </ion-select>
   </ion-item>

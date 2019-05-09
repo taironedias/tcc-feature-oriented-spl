@@ -15,13 +15,13 @@ export class CriarQuestaoPage implements OnInit {
   public listQuestions: Array<QuestaoCustom> = [];
 
   niveis = ['1', '2', '3'];
-  nivel = '1';
   disciplinas = ['Matemática', 'Biologia', 'Física',
-    'Química', 'Literatura', 'Inglês',
-    'História', 'Geografia', 'Artes'].sort();
+  'Química', 'Literatura', 'Inglês',
+  'História', 'Geografia', 'Artes'].sort();
   textoQuestao = '';
-  discpEscolhida: string;
-  opcRespostaEscolhida = '';
+  disciplina: string;
+  nivel: string;
+  opcResposta = '';
   alternativa = '';
   formRadio = [
     { val: 'Alternativa 1', isChecked: false },
@@ -42,7 +42,9 @@ export class CriarQuestaoPage implements OnInit {
 
   resetCampos() {
     this.textoQuestao = null;
-    this.opcRespostaEscolhida = null;
+    this.disciplina = 'Any';
+    this.nivel = '-1';
+    this.opcResposta = '';
     this.alternativa = null;
     this.formRadio = [
       { val: 'Alternativa 1', isChecked: false },
@@ -61,8 +63,7 @@ export class CriarQuestaoPage implements OnInit {
   }
 
   constructor(private qstDataService: QuestionDataService,
-    private router: Router,
-    private alertCtrl: AlertController) { }
+              private alertCtrl: AlertController) { }
 
   ngOnInit() {
     this.valuesDefault();
@@ -72,30 +73,30 @@ export class CriarQuestaoPage implements OnInit {
 
     if (this.textoQuestao === null || this.textoQuestao === '') {
       this.showAlert('Aviso!', 'Por favor, forneça um texto de questão válido.');
-    } else if (this.discpEscolhida === null || this.discpEscolhida === '') {
+    } else if (this.disciplina === null || this.disciplina === '') {
       this.showAlert('Aviso!', 'Por favor, forneça uma categoria de resposta válida.');
-    } else if (this.opcRespostaEscolhida === 'texto' && (this.textoLivre === null || this.textoLivre === '')) {
+    } else if (this.opcResposta === 'texto' && (this.textoLivre === null || this.textoLivre === '')) {
       this.showAlert('Aviso!', 'Por favor, forneça um texto de resposta válida.');
     } else {
 
       const qst = new QuestaoCustom();
       qst.textoQst = this.textoQuestao;
-      qst.categoria = this.discpEscolhida;
+      qst.categoria = this.disciplina;
       qst.nivelDificuldade = this.nivel;
-      if (this.opcRespostaEscolhida === 'unica') {
+      if (this.opcResposta === 'unica') {
         qst.alternativas = this.formRadio;
-        qst.opcEscolha = this.opcRespostaEscolhida;
+        qst.opcEscolha = this.opcResposta;
         qst.textoLivre = null;
-      } else if (this.opcRespostaEscolhida === 'texto') {
+      } else if (this.opcResposta === 'texto') {
         if (this.textoLivre === null || this.textoLivre === '') {
           this.showAlert('Aviso!', 'Por favor, forneça um texto de resposta válida.');
         }
         qst.alternativas = null;
-        qst.opcEscolha = this.opcRespostaEscolhida;
+        qst.opcEscolha = this.opcResposta;
         qst.textoLivre = this.textoLivre;
-      } else if (this.opcRespostaEscolhida === 'multipla') {
+      } else if (this.opcResposta === 'multipla') {
         qst.alternativas = this.form;
-        qst.opcEscolha = this.opcRespostaEscolhida;
+        qst.opcEscolha = this.opcResposta;
         qst.textoLivre = null;
       }
 
@@ -105,14 +106,6 @@ export class CriarQuestaoPage implements OnInit {
       this.showAlert('Questão', 'Questão adicionada com sucesso!');
       this.resetCampos();
     }
-  }
-
-  setDisciplina(value) {
-    this.discpEscolhida = value;
-  }
-
-  setOpcResposta(value) {
-    this.opcRespostaEscolhida = value;
   }
 
   addAlternativa() {
@@ -128,8 +121,6 @@ export class CriarQuestaoPage implements OnInit {
     this.formRadio[value].isChecked = true;
   }
 
-
-  /* MULTIPLA ESCOLHA */
   addCheckbox() {
     this.form[this.cont].val = this.altCheckbox;
     this.cont += 1;
@@ -137,10 +128,6 @@ export class CriarQuestaoPage implements OnInit {
     if (this.cont === 3) {
       this.disabledButton = true;
     }
-  }
-
-  setNivel(value) {
-    this.nivel = value;
   }
 
   async showAlert(title: string, msg: string) {
@@ -156,7 +143,7 @@ export class CriarQuestaoPage implements OnInit {
     let outString = '';
     const inOptions = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
 
-    for (let i = 0; i < 20; i++) {
+    for (let i = 0; i < 3; i++) {
       outString += inOptions.charAt(Math.floor(Math.random() * inOptions.length));
     }
 

@@ -19,18 +19,13 @@ export class AtualizarQuestaoPage implements OnInit {
     'Química', 'Literatura', 'Inglês',
     'História', 'Geografia', 'Artes'].sort();
   categoria = '';
-  nivel = '1';
-
+  nivel = '';
   opcResp = '';
   formRadio = [
     { val: 'Alternativa 1', isChecked: true },
     { val: 'Alternativa 2', isChecked: false },
     { val: 'Alternativa 3', isChecked: false }
   ];
-  alternativasResp: Array<string> = [];
-  rAlt0 = false;
-  rAlt1 = false;
-  rAlt2 = false;
 
   textoLivre = '';
 
@@ -41,8 +36,8 @@ export class AtualizarQuestaoPage implements OnInit {
   ];
 
   constructor(private qstDataService: QuestionDataService,
-    private alertCtrl: AlertController,
-    private router: Router) { }
+              private alertCtrl: AlertController,
+              private router: Router) { }
 
   ngOnInit() {
     // console.log(this.qstDataService.data);
@@ -63,11 +58,8 @@ export class AtualizarQuestaoPage implements OnInit {
     }
   }
 
-  categoriaEscolhida(): void {
-    console.log(this.categoria);
-  }
-
   setRespAlternativa(value) {
+    // tslint:disable-next-line: forin
     for (let i in this.formRadio) {
       if (i === value) {
         this.formRadio[i].isChecked = true;
@@ -119,7 +111,7 @@ export class AtualizarQuestaoPage implements OnInit {
           this.qstDataService.itens[k] = this.qst;
         }
       }
-  
+
       console.log(this.qstDataService.itens);
       this.showAlert('Update', 'Questão atualizada com sucesso!');
       this.router.navigate(['tabs/pesquisar-questao']);
