@@ -1,0 +1,19 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>{{ chosenAccess.title }}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-item>
+    <ion-label position="floating"> {{ chosenAccess.labelText1 }} </ion-label>
+    <ion-input type="text" [(ngModel)]="label1"> </ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label position="floating"> {{ chosenAccess.labelText2 }} </ion-label>
+    <ion-input [type]="chosenAccess.typeLabel2" [(ngModel)]="label2"> </ion-input>
+  </ion-item>
+
+  <ion-button color="dark" (click)="loading()" fill="solid" expand="block"> {{ chosenAccess.buttonText}} </ion-button>
+</ion-content>
