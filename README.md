@@ -1,10 +1,12 @@
-# Feature-Oriented SPL
-Este repositório refere-se ao meu trabalho de conclusão de curso de Engenharia de Computação da Universidade Federal do Recôncavo da Bahia (UFRB).
+## Feature-Oriented SPL
+Este repositório refere-se ao desenvolvimento de um projeto piloto sobre as áreas de pesquisa listadas abaixo para exemplificar o capítulo Design de Pesquisa do meu trabalho de conclusão de curso de Engenharia de Computação da Universidade Federal do Recôncavo da Bahia (UFRB).
 
 ### Áreas de pesquisa
 - Feature-Oriented Software Product Line;
-- JavaScript Frameworks;
-- Técnicas de Implementação de Variabilidade
+- JavaScript Frameworks (Angular and Ionic);
+- Variability Implementation Techniques.
+
+**Obs.:** Para executar qualquer projeto, primeiro faça um `$ npm install` dentro da pasta do projeto para instalar os módulos node e criar o arquivo package-lock.json
 
 
 #### sem-tecnica:
@@ -16,12 +18,12 @@ Este repositório apresenta a primeira técnica de implementação de variabilid
 
 
 #### design-patterns:
-Ainda em desenvolvimento...
+Os design patterns desenvolvidos foram o template-method e strategy. Esses repositórios reutilizam do projeto sem técnica implementando os conceitos de classes abstratas e interfaces respectivamente. Assim, implementamos a variabilidade conforme o modelo de features apenas nas features alternativa e opcional.
 
 
 #### frameworks white-box e black-box:
-Não sei se chego a esse nível...
+Não foi possível implementar, pelo Ionic e Angular não possui um comando CLI que juntasse as features desenvolvidas separadamente em um único projeto/software.
 
 
-#### componentes-servicos:
-Aí nunca vou sair da UFRB... ='(
+#### component-service:
+Nativamente Angular e Ionic promovem o uso de Component. Para o Ionic o uso mais fácil desse conceito é o Page. Assim, reimplementamos de forma simplificada utilizando os recursos de Page e Component dentro de uma Page, para exemplificar a variabilidade.
