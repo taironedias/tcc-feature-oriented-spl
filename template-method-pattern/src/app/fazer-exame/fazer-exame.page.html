@@ -1,0 +1,60 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Exame "{{ exame.nameExame }}"</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+
+  <ion-label> Chave: {{ exame.key }} </ion-label>
+  <!-- <ion-label> Pontos: {{ spontuacao }} </ion-label> -->
+
+  <ion-card>
+    <ion-card-header>
+      <ion-card-subtitle>{{qst.categoria}}</ion-card-subtitle>
+      <ion-card-title>{{qst.textoQst}}</ion-card-title>
+    </ion-card-header>
+
+
+    <ion-card-content *ngIf="qst.opcEscolha == 'unica'">
+      <ion-list>
+        <ion-radio-group (ionChange)="setRespAlternativa(respAlt.value)" #respAlt>
+
+          <ion-item>
+            <ion-label>{{ qst.alternativas[0].val }}</ion-label>
+            <ion-radio value="0"></ion-radio>
+          </ion-item>
+          <ion-item>
+            <ion-label>{{ qst.alternativas[1].val }}</ion-label>
+            <ion-radio value="1"></ion-radio>
+          </ion-item>
+          <ion-item>
+            <ion-label>{{ qst.alternativas[2].val }}</ion-label>
+            <ion-radio value="2"></ion-radio>
+          </ion-item>
+
+        </ion-radio-group>
+      </ion-list>
+    </ion-card-content>
+
+    <ion-card-content *ngIf="qst.opcEscolha == 'multipla'">
+      <ion-list>
+        <ion-item *ngFor="let alt of qst.alternativas; let i = index">
+          <ion-label>{{ alt.val }}</ion-label>
+          <ion-checkbox [(ngModel)]="respCheckbox[i]"></ion-checkbox>
+        </ion-item>
+      </ion-list>
+    </ion-card-content>
+
+    <ion-card-content *ngIf="qst.opcEscolha == 'texto'">
+      <ion-item>
+        <ion-label position="floating"> Digite a sua resposta: </ion-label>
+        <ion-input type="text" [(ngModel)]="textoLivreStudant"> </ion-input>
+      </ion-item>
+    </ion-card-content>
+
+  </ion-card>
+
+  <ion-button color="primary" (click)="next()" [disabled]="disabledButton"> {{ nameButton }} </ion-button>
+
+</ion-content>

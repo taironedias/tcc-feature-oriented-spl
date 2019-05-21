@@ -1,0 +1,130 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>{{ title }}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+  <!-- TEXTO DA QUESTÃO -->
+  <ion-item>
+    <ion-label position="floating"> {{ lQuestionText }} </ion-label>
+    <ion-textarea [(ngModel)]="textoQuestao"></ion-textarea>
+  </ion-item>
+
+  <!-- CATEGORIA DA QUESTÃO -->
+  <ion-item>
+    <ion-label> {{ lCategoriaText }} </ion-label>
+    <ion-select interface="popover" placeholder="---" [(ngModel)]="categoria">
+      <ion-select-option *ngFor="let item of categorias">{{ item }}</ion-select-option>
+    </ion-select>
+  </ion-item>
+
+  <!-- ESCOLHA DA RESPOSTA -->
+  <ion-item *ngIf="createPage">
+    <ion-grid>
+
+      <ion-row>
+        <ion-label> Escolha a opção de resposta: </ion-label>
+      </ion-row>
+
+      <ion-row>
+        <ion-segment [(ngModel)]="opcResposta">
+          <ion-segment-button value="unica">
+            <ion-label>Escolha Única</ion-label>
+          </ion-segment-button>
+          <ion-segment-button value="multipla">
+            <ion-label>Escolha Múltipla</ion-label>
+          </ion-segment-button>
+          <ion-segment-button value="texto">
+            <ion-label>Texto livre</ion-label>
+          </ion-segment-button>
+        </ion-segment>
+      </ion-row>
+
+    </ion-grid>
+  </ion-item>
+
+  <!-- TIPOS DA RESPOSTA -->
+  <div *ngIf="opcResposta == 'unica'">
+    <ion-item *ngIf="!createPage">
+      <ion-label> Alternativas: </ion-label>
+    </ion-item>
+    <ion-list>
+      <ion-radio-group (ionChange)="setRespAlternativa(respAlt.value)" #respAlt>
+
+        <ion-list-header *ngIf="createPage">
+          <ion-grid>
+            <ion-row>
+              <ion-col>
+                <ion-label position="floating"> Digite as alternativas e selecione a correta: </ion-label>
+                <ion-input type="text" [(ngModel)]="altRadio"> </ion-input>
+              </ion-col>
+              <ion-col size="3">
+                <ion-button color="primary" (click)="addAlternativa()" shape="round"
+                  [class.button-disabled]="disabledButton"> add </ion-button>
+              </ion-col>
+            </ion-row>
+          </ion-grid>
+        </ion-list-header>
+
+        <ion-item>
+          <ion-label>{{ formRadio[0].val }}</ion-label>
+          <ion-radio value="0" [checked]="formRadio[0].isChecked"></ion-radio>
+        </ion-item>
+        <ion-item>
+          <ion-label>{{ formRadio[1].val }}</ion-label>
+          <ion-radio value="1" [checked]="formRadio[1].isChecked"></ion-radio>
+        </ion-item>
+        <ion-item>
+          <ion-label>{{ formRadio[2].val }}</ion-label>
+          <ion-radio value="2" [checked]="formRadio[2].isChecked"></ion-radio>
+        </ion-item>
+
+      </ion-radio-group>
+    </ion-list>
+  </div>
+
+  <div *ngIf="opcResposta == 'multipla'">
+    <ion-item *ngIf="!createPage">
+      <ion-label> Alternativas: </ion-label>
+    </ion-item>
+    <ion-grid *ngIf="createPage">
+      <ion-row>
+        <ion-col>
+          <ion-label position="floating"> Digite as alternativas e selecione a(s) correta(s): </ion-label>
+          <ion-input type="text" [(ngModel)]="altCheck"> </ion-input>
+        </ion-col>
+        <ion-col size="3">
+          <ion-button color="primary" (click)="addCheckbox()" shape="round" [class.button-disabled]="disabledButton">
+            add </ion-button>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+
+    <ion-list>
+      <ion-item *ngFor="let item of formCheck">
+        <ion-label>{{ item.val }}</ion-label>
+        <ion-checkbox slot="end" [(ngModel)]="item.isChecked"></ion-checkbox>
+      </ion-item>
+    </ion-list>
+  </div>
+
+  <div *ngIf="opcResposta == 'texto'">
+    <ion-item>
+      <ion-label position="floating"> {{ lTextoLivreText }} </ion-label>
+      <ion-textarea [(ngModel)]="textoLivre"></ion-textarea>
+    </ion-item>
+  </div>
+
+  <!-- NIVEL DE DIFICULDADE -->
+  <ion-item *ngIf="level">
+    <ion-label> Nível de dificuldade: </ion-label>
+    <ion-select interface="popover" placeholder="---" [(ngModel)]="nivel">
+      <ion-select-option *ngFor="let item of niveis">{{ item }}</ion-select-option>
+    </ion-select>
+  </ion-item>
+
+  <!-- ENVIAR QUESTÃO -->
+  <ion-button color="primary" (click)="actionQuestion()" fill="solid" expand="block"> {{ buttonText }} </ion-button>
+
+</ion-content>
