@@ -1,0 +1,77 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Atualizar Questão</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+  <!-- TEXTO DA QUESTÃO -->
+  <ion-item>
+    <ion-label position="floating">Texto da questão:</ion-label>
+    <ion-textarea [(ngModel)]="textoQuestao" value="textoQuestao"></ion-textarea>
+  </ion-item>
+
+  <!-- CATEGORIA DA QUESTÃO -->
+  <ion-item>
+    <ion-label>Categoria:</ion-label>
+    <ion-select [(ngModel)]="categoria" interface="popover">
+      <ion-select-option *ngFor="let categoria of categorias">{{ categoria }}</ion-select-option>
+    </ion-select>
+  </ion-item>
+
+  <!-- TIPOS DA RESPOSTA -->
+  <div *ngIf="opcResp == 'unica'">
+    <ion-item>
+      <ion-label> Alternativas: </ion-label>
+    </ion-item>
+
+    <ion-list>
+      <ion-radio-group (ionChange)="setRespAlternativa(respAlt.value)" #respAlt>
+
+        <ion-item>
+          <ion-label>{{ formRadio[0].val }}</ion-label>
+          <ion-radio value="0" [checked]="formRadio[0].isChecked"></ion-radio>
+        </ion-item>
+        <ion-item>
+          <ion-label>{{ formRadio[1].val }}</ion-label>
+          <ion-radio value="1" [checked]="formRadio[1].isChecked"></ion-radio>
+        </ion-item>
+        <ion-item>
+          <ion-label>{{ formRadio[2].val }}</ion-label>
+          <ion-radio value="2" [checked]="formRadio[2].isChecked"></ion-radio>
+        </ion-item>
+
+      </ion-radio-group>
+    </ion-list>
+  </div>
+
+  <div *ngIf="opcResp == 'texto'">
+    <ion-item>
+      <ion-label position="floating">Resposta:</ion-label>
+      <ion-textarea [(ngModel)]="textoLivre" value="textoLivre"></ion-textarea>
+    </ion-item>
+  </div>
+
+  <div *ngIf="opcResp == 'multipla'">
+
+    <ion-list>
+      <ion-item *ngFor="let item of form">
+        <ion-label>{{item.val}}</ion-label>
+        <ion-checkbox slot="end" [(ngModel)]="item.isChecked"></ion-checkbox>
+      </ion-item>
+    </ion-list>
+
+  </div>
+
+  <!-- NIVEL DE DIFICULDADE -->
+  <ion-item *ngIf="level">
+    <ion-label>Nível de dificuldade:</ion-label>
+    <ion-select [(ngModel)]="nivel" interface="popover">
+      <ion-select-option *ngFor="let item of niveis">{{ item }}</ion-select-option>
+    </ion-select>
+  </ion-item>
+
+  <!-- ENVIAR QUESTÃO -->
+  <ion-button color="primary" (click)="updateQuestion()" fill="solid" expand="block"> Atualizar questão </ion-button>
+
+</ion-content>

@@ -1,0 +1,6 @@
+<ion-item>
+  <ion-label>Nível de dificuldade:</ion-label>
+  <ion-select interface="popover" placeholder="---" [(ngModel)]="nivel">
+    <ion-select-option *ngFor="let item of niveis">{{ item }}</ion-select-option>
+  </ion-select>
+</ion-item>
